@@ -145,10 +145,12 @@ while not is_end :
     if build == 1 :     #made by 김재희~
         position = pygame.mouse.get_pos()
         tower1[index].build_tower(position[0], position[1])
+
     elif build == 2 :
         position = pygame.mouse.get_pos()
         enemy1[eindex].x = position[0]
         enemy1[eindex].y = position[1]
+
     for i in range(0, len(tower1)) :
         attack_on = False
         if len(enemy1) > 0 :
@@ -168,8 +170,7 @@ while not is_end :
         else :
             if tower1[i].is_support == False :
                 tower1[i].attack = 0
-        if attack_on == False :
-            tower1[i].attack = 0
+
     if build == 0:
         for i in support_index :
             exist = False
@@ -181,7 +182,8 @@ while not is_end :
                         exist = True
                         tower1[i].tower_attack(game_timer)
             if exist == False :
-                tower1[i].attack = 0            #~made by 김재희
+                tower1[i].attack = 0
+
 
     for i in range(0, len(tower1)) :
         tower1[i].blit_tower(screen)
@@ -189,8 +191,6 @@ while not is_end :
     for i in range(0, len(enemy1)) :
         screen.blit(enemy1[i].enemy_img, (enemy1[i].x - enemy1[i].enemy_img.get_width()/2, enemy1[i].y - enemy1[i].enemy_img.get_height()/2))
 
-    gold_font = font.render(str(gold), True, (255, 255, 255))
-    screen.blit(gold_font, (1180, 40))
     screen.blit(timg[0], (1100, 120))
     screen.blit(timg[1], (1180, 120))
     screen.blit(timg[2], (1100, 200))
