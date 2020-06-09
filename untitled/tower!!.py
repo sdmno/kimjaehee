@@ -138,27 +138,26 @@ while not is_end :
         enemy1[eindex].y = position[1]
 
     for i in range(0, len(tower1)) :
+        attack_on = False
         if len(enemy1) > 0 :
             for j in range(0, len(enemy1)) :
                 if(tower1[i].is_support != True) :
                     if (enemy1[j].x - tower1[i].x)*(enemy1[j].x - tower1[i].x) \
                         + (enemy1[j].y - tower1[i].y)*(enemy1[j].y - tower1[i].y) <= tower1[i].range*tower1[i].range :
-                        if game_timer - tower1[i].timer >= tower1[i].speed:
-                            tower1[i].timer = game_timer
-                            tower1[i].tower_attack()
+                        attack_on = True
+                        if tower1[i].tower_attack(game_timer) :
                             enemy1[j].health -= tower1[i].damage + tower1[i].plus_damage
-                            if enemy1[j].health <= 0:
+                            if enemy1[j].health <= 0 :
                                 enemy1.pop(j)
                                 eindex -= 1
-                                tower1[i].attack_on = False
-                                tower1[i].attack = 0
                         break
                     else :
-                        tower1[i].attack_on = False
-                        tower1[i].attack = 0
+                        attack_on = False
         else :
             if tower1[i].is_support == False :
                 tower1[i].attack = 0
+        if attack_on == False :
+            tower1[i].attack = 0
 
     if build == 0:
         for i in support_index :
@@ -169,9 +168,7 @@ while not is_end :
                         + (tower1[j].y - tower1[i].y) * (tower1[j].y - tower1[i].y) <= tower1[i].range * tower1[i].range :
                         tower1[j].plus_damage = tower1[i].plus_damage
                         exist = True
-                        if game_timer - tower1[i].timer >= 1:
-                            tower1[i].timer = game_timer
-                            tower1[i].tower_attack()
+                        tower1[i].tower_attack(game_timer)
             if exist == False :
                 tower1[i].attack = 0
 

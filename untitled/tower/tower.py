@@ -15,7 +15,6 @@ class tower :
         self.attack = 0
         self.timer = 0
         self.selected = False
-        self.attack_on = False
         self.upgrade_price = [50, 100, 150]
         self.sell_price = [25, 50, 75]
         self.Timage = []
@@ -64,10 +63,14 @@ class tower :
         self.damage += 1
         return self.upgrade_price[self.level]
 
-    def tower_attack(self):
-        self.attack += 1
-        self.attack %= 2
-
+    def tower_attack(self, gtimer):
+        if gtimer - self.timer >= self.speed :
+            self.timer = gtimer
+            self.attack += 1
+            self.attack %= 2
+            return True
+        else :
+            return False
 
 
 
