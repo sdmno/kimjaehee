@@ -48,7 +48,7 @@ while not is_end :
         if event.type == pygame.MOUSEBUTTONDOWN :
             position = pygame.mouse.get_pos()
 
-            if build == 0 :
+            if build == 0 :                 #made by 김재희~
                 for i in range(0, len(tower1)):
                     if tower1[i].selected:
                         if position[1] >= 650 and position[1] <= 650 + tower1[i].sell.get_height():
@@ -117,7 +117,7 @@ while not is_end :
                     position[1]>=520 and position[1]<=520 + cancel_img.get_height() :
                     index -= 1
                     tower1.pop()
-            elif build == 2 :
+            elif build == 2 :                       #~made by 김재희
                 build -= 2
                 if position[0]>=1100 and position[0]<=1100+eimg.get_width() and\
                         position[1]>=300 and position[1]<=300+eimg.get_height() :
@@ -128,15 +128,13 @@ while not is_end :
 
     screen.fill(BLACK)
 
-    if build == 1 :
+    if build == 1 :     #made by 김재희~
         position = pygame.mouse.get_pos()
         tower1[index].build_tower(position[0], position[1])
-
     elif build == 2 :
         position = pygame.mouse.get_pos()
         enemy1[eindex].x = position[0]
         enemy1[eindex].y = position[1]
-
     for i in range(0, len(tower1)) :
         attack_on = False
         if len(enemy1) > 0 :
@@ -158,7 +156,6 @@ while not is_end :
                 tower1[i].attack = 0
         if attack_on == False :
             tower1[i].attack = 0
-
     if build == 0:
         for i in support_index :
             exist = False
@@ -170,8 +167,7 @@ while not is_end :
                         exist = True
                         tower1[i].tower_attack(game_timer)
             if exist == False :
-                tower1[i].attack = 0
-
+                tower1[i].attack = 0            #~made by 김재희
 
     for i in range(0, len(tower1)) :
         tower1[i].blit_tower(screen)
